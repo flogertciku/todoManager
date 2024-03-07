@@ -7,7 +7,8 @@ const TodoSchema = new mongoose.Schema({
     min: [new Date(), "Due date must be in the future"]},
     state:{ type: String,
     required: [true, "State is required"],
-default: "todo"}
+default: "todo"},
+creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 module.exports = mongoose.model('Todo', TodoSchema);
 

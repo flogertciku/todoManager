@@ -1,6 +1,8 @@
 const TodoController = require('../controllers/todo.controllers');
+const getTodos = '/api/todo';
+const { authenticate } = require('../config/jwt.config');
 module.exports = (app) => {
-    app.get('/api/todo', TodoController.getTodos); 
-    app.post('/api/todo', TodoController.createTodo);     /* This is new */
-    app.patch('/api/todo/:id', TodoController.changeState); 
+    app.get(getTodos,authenticate, TodoController.getTodos); 
+    app.post('/api/todo',authenticate, TodoController.createTodo);     /* This is new */
+    app.patch('/api/todo/:id', authenticate,TodoController.changeState); 
 }
